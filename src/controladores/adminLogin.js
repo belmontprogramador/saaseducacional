@@ -29,7 +29,7 @@ const login = async (req, res) => {
 
     
 
-    res.status(200).json({ mensagem: 'Login bem-sucedido', token: token });
+    res.status(200).json({ mensagem: 'Login bem-sucedido' });
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     return res.status(500).json({ mensagem: 'Erro interno no servidor', error: error.message });

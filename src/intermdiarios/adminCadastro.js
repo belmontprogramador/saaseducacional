@@ -21,7 +21,7 @@ const validarCadastroAdmin = async (req, res, next) => {
       },
     });
 
-    if (!adminLogado || adminLogado.id !== 1) {
+    if (!adminLogado || Number(adminLogado.id)) {
       return res.status(403).json({ mensagem: 'Este usuário não pode cadastrar novos administradores.' });
     }
 
