@@ -17,3 +17,41 @@ model Admin {
   senha String   @db.VarChar(255)
   nome_usuario String?   @unique @db.VarChar(255)
 }
+
+ // prisma/schema.prisma
+
+model Empresa {
+  id               Int      @id @default(autoincrement())
+  cnpj             String   @unique
+  razao_social     String
+  nome_fantasia    String
+  dia_do_pagamento Int
+  cep              String
+  logradouro       String
+  numero           String
+  complemento      String
+  bairro           String
+  estadoId         Int
+  municipioId      Int
+  usuario          String
+  senha            String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relacionamento com Estado
+  estado           Estado   @relation(fields: [estadoId], references: [id])
+  // Relacionamento com Municipio
+  municipio        Municipio @relation(fields: [municipioId], references: [id])
+}
+
+model Estado {
+  id      Int       @id @default(autoincrement())
+  nome    String
+  empresas Empresa[] // Relacionamento com Empresa
+}
+
+model Municipio {
+  id      Int       @id @default(autoincrement())
+  nome    String
+  empresas Empresa[] // Relacionamento com Empresa
+}
